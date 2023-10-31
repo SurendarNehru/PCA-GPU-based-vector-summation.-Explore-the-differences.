@@ -1,40 +1,37 @@
-### EX NO : 01
-# <p align="center">PCA-GPU based vector summation. Explore the differences.</p>
-i) Using the program sumArraysOnGPU-timer.cu, set the block.x = 1023. Recompile and run it. Compare the result with the execution confi guration of block.x = 1024. Try to explain the difference and the reason.
+# PCA-GPU-based vector summation. Explore the differences.
+i) Using the program sumArraysOnGPU-timer.cu, set the block.x = 1023. Recompile and run it. Compare the result with the execution configuration of block.x = 1024. Try to explain the difference and the reason.
 
-ii) Refer to sumArraysOnGPU-timer.cu, and let block.x = 256. Make a new kernel to let each thread handle two elements. Compare the results with other execution confi gurations.
-
-## Aim :
-
+ii) Refer to sumArraysOnGPU-timer.cu, and let block.x = 256. Make a new kernel to let each thread handle two elements. Compare the results with other execution configurations.
+## AIM:
 (i) To modify or set the execution configuration of block.x as 1023 & 1024 and compare the elapsed time obtained on Host and GPU.
 
 (ii) To set the number of threads as 256 and obtain the elapsed time on Host and GPU.
 
-## Procedure :
-
-### Step 1 :
+## PROCEDURE:
+### STEP 1 :
 Include the required files and library.
-### Step 2 :
-Declare a function sumMatrixOnHost , to perform vector summation on the host side .
-### Step 3 :
+### STEP 2 :
+Declare a function sumMatrixOnHost, to perform vector summation on the host side.
+### STEP 3 :
 Declare a function with __ global __ , which is a CUDA C keyword , to execute the function to perform vector summation on GPU .
-### Step 4 :
-Declare Main method/function .
-### Step 5 :
-In the Main function Set up device and data size of vector ,Allocate Host Memory and device global memory,Initialize data at host side and then add vector at host side ,transfer data from host to device.
-### Step 6 :
-Invoke kernel at host side(1023,1024,256), check for kernel error and copy kernel result back to host side.
-### Step 7 :
-Finally Free device global memory,host memory and reset device.
-### Step 8 :
+### STEP 4 :
+Declare Main method/function. In the Main function Set up device and data size of vector, Allocate Host Memory and device global memory,Initialize data at host side and then add vector at host side,transfer data from host to device.
+### STEP 5 :
+Invoke kernel at host side (1023,1024,256), check for kernel error and copy kernel result back to host side.
+### STEP 6 :
+Finally Free device global memory, host memory and reset device.
+### STEP 7 :
 Save and Run the Program.
-## Program :
-Developed By : **Virgil Jovita A**
-</br>
-Register No. : **212221240062**
-### 1. Block.x=1023
-```c
-#include "../common/common.h"
+
+### PROGRAM:
+```
+Name : SURENDAR N
+Register No : 212222040165
+```
+
+(i) block.x=1023
+```
+#include "common.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -184,9 +181,10 @@ int main(int argc, char **argv)
     return(0);
 }
 ```
-### 2. block.x = 1024
-```c
-#include "../common/common.h"
+
+block.x = 1024
+```
+#include "common.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -336,9 +334,10 @@ int main(int argc, char **argv)
     return(0);
 }
 ```
-### 3. Block.x = 256
-```c
-#include "../common/common.h"
+
+(ii) block.x = 256
+```
+#include "common.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -488,25 +487,18 @@ int main(int argc, char **argv)
     return(0);
 }
 ```
-## Output :
 
-### 1. Block.x = 1023
+## OUTPUT:
+block.x = 1023
+![op1](https://github.com/PAARKAVYB/PCA-GPU-based-vector-summation.-Explore-the-differences./assets/93509383/ff56d5cd-9a3c-42f9-8e77-d2a5b328925c)
 
-![PCAi](https://user-images.githubusercontent.com/118348224/236833752-12cdc708-286d-434b-989b-07fe023150d5.png)
+block.x = 1024
+![op2](https://github.com/PAARKAVYB/PCA-GPU-based-vector-summation.-Explore-the-differences./assets/93509383/5add21c8-e36e-4bf3-832a-37f0ff81d448)
 
+block.x = 256
+![op3](https://github.com/PAARKAVYB/PCA-GPU-based-vector-summation.-Explore-the-differences./assets/93509383/ec07279e-c665-42f8-a35a-73c78cdcf0f3)
 
-## 2. Block.x = 1024
-
-![PCAii](https://user-images.githubusercontent.com/118348224/236833799-18ea165e-dea6-4c05-8db6-b09aff5d134a.png)
-
-
-### 3. block.x = 256
-
-![PCAiii](https://user-images.githubusercontent.com/118348224/236833843-57ec1bbb-8f39-4c0c-a0aa-e89f9f00f57a.png)
-
-
-Host-based array summation vs GPU-based vector summation
-
+### Host-based array summation vs GPU-based vector summation
 GPUs: “SIMD” - “Single-Instruction, Multiple-Data”. A GPU can operate on a hundred or a thousand vertices or pixels at once in parallel, but it has to perform exactly the same calculation on all of them.
 
 Whereas a single CPU core can be described as “SISD” - “Single-Instruction, Single-Data”. With multiple CPU cores, we get “MIMD” -- “Multiple-Instruction, Multiple-Data”, where each instruction sequence can be doing entirely different things to different data. Or in other words, multithreading.
@@ -519,8 +511,7 @@ CPU : for each i in [0,256]: c[i] = a[i] * b[i] . Here, Each thread progresses a
 
 GPU : float32_times256 c,b,a; c = b * a; where c=b*a is one instruction, with three huge operands.
 
-## Result :
+## RESULT:
+(i) The block.x is set as 1023 & 1024 and the elapsed time obtained on Host and GPU is almost same for the block 1023 & 1024.
 
-(i) The block.x is set as 1023 & 1024 and the elapsed time obtained on Host and GPU is compared.
-
-(ii) The number of threads is set as 256 and the elapsed time on Host and GPU is obtained.
+(ii) The number of threads is set as 256 and the elapsed time on Host and GPU obtained is much lesser than that of block value 1023 & 1024.
